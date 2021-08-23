@@ -68,11 +68,22 @@ class User extends Model implements Authenticatable
     public function hasRole(string|array $roles): bool
     {
         foreach ((array) $roles as $role) {
-            if (! $this->roles->contains($role)) {
-                return false;
+            if ($this->roles->contains($role)) {
+                return true;
             }
         }
 
-        return true;
+        return false;
+    }
+
+    public function hasPermission(string|array $permissions): bool
+    {
+        foreach ((array) $permissions as $permission) {
+            if ($this->permissions->contains($permission)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
