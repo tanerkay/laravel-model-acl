@@ -5,11 +5,11 @@
 Here's a demo of how you can use it:
 
 ```php
-use Tanerkay\ModelAcl\Traits\HasModelBasedAccessControl
+use Tanerkay\ModelAcl\Traits\ModelBasedAccessControl
 
 class ReportPolicy
 {
-    use HasModelBasedAccessControl;
+    use ModelBasedAccessControl;
 }
 
 

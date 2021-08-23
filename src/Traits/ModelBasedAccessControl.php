@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Tanerkay\ModelAcl\ModelAclServiceProvider;
 use Tanerkay\ModelAcl\AccessControlStatus;
 
-trait HasModelBasedAccessControl
+trait ModelBasedAccessControl
 {
     protected bool $disableModelBasedAccessControl = false;
 
