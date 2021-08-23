@@ -1,6 +1,6 @@
 {
     "name": "tanerkay/laravel-model-acl",
-    "description": "Access control based on an individual record / model",
+    "description": "Access control based on individual records / models",
     "keywords": [
         "authorization",
         "access control",
@@ -10,9 +10,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Taner",
-            "email": "hello@taner.work",
-            "homepage": "https://taner.work"
+            "name": "Taner Kucukyuruk",
+            "homepage": "https://github.com/tanerkay"
         }
     ],
     "require": {
