@@ -33,7 +33,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Tanerkay\\ModelAcl\\ActivitylogServiceProvider"
+                "Tanerkay\\ModelAcl\\ModelAclServiceProvider"
             ]
         }
     },

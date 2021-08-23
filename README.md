@@ -1,6 +1,6 @@
 # Model-based access control
 
-`tanerkay/laravel-model-access` allows record-level
+`tanerkay/laravel-model-access` allows record-level access control based on custom authorization rules.
 
 Here's a demo of how you can use it:
 
@@ -50,9 +50,9 @@ php artisan vendor:publish --provider="Tanerkay\ModelAcl\ModelAclServiceProvider
 composer test
 ```
 
-## Contributing
+## Thanks
 
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+- [Spatie](https://spatie.be) for making awesome packages, this package leverages `spatie/laravel-package-tools` and is itself partially derived from `spatie/laravel-activitylog`.
 
 ## License
 
