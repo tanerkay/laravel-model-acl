@@ -32,15 +32,14 @@ trait ModelBasedAccessControl
         return true;
     }
 
-    public function can($ability, ?Authenticatable $user = null): bool
+    public function can($ability, ?Authenticatable $user = null): void
     {
-        return $this->accessControl->each(function ($accessControl) {
-            // ...
-        })->every(true);
-    }
+        if (! $this->shouldUseModelBasedAccessControl()) {
+            return;
+        }
 
-    public function cannot($ability, ?Authenticatable $user = null): bool
-    {
-        return ! $this->can($ability, $user);
+        $this->accessControl->each(
+            fn (ModelHasAccessControl $accessControl) => $accessControl->authorize($ability, $user)
+        );
     }
 }

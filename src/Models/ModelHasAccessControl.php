@@ -2,20 +2,31 @@
 
 namespace Tanerkay\ModelAcl\Models;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Collection;
 use Tanerkay\ModelAcl\Contracts\AccessControlContract as ActivityContract;
+use Tanerkay\ModelAcl\Contracts\RuleContract;
 
+/**
+ * Model has access control
+ *
+ * @property int $id
+ * @property string $subject_type
+ * @property int $subject_id
+ * @property Collection $abilities
+ * @property Collection $rules
+ * @property-read Model $subject
+ */
 class ModelHasAccessControl extends Model implements ActivityContract
 {
     public $guarded = [];
 
-    protected $table = 'model_has_access_control';
-
     protected $casts = [
-        'properties' => 'collection',
+        'abilities' => 'collection',
+        'rules' => 'collection',
     ];
 
     public function __construct(array $attributes = [])
@@ -40,24 +51,30 @@ class ModelHasAccessControl extends Model implements ActivityContract
         return $this->morphTo();
     }
 
-    public function access(): Collection
-    {
-        if (! $this->properties instanceof Collection) {
-            return new Collection();
-        }
-
-        return $this->properties->only(['attributes', 'old']);
-    }
-
-    public function getAccessAttribute(): Collection
-    {
-        return $this->access();
-    }
-
     public function scopeForSubject(Builder $query, Model $subject): Builder
     {
         return $query
             ->where('subject_type', $subject->getMorphClass())
             ->where('subject_id', $subject->getKey());
+    }
+
+    public function authorize(string $ability, ?Authenticatable $user = null): void
+    {
+        if (! $this->hasAbility($ability)) {
+            return;
+        }
+
+        $this->rules->each(function (object $ruleDefinition) use ($user) {
+            $ruleClass = $ruleDefinition->class;
+
+            /** @var RuleContract $rule */
+            $rule = new $ruleClass();
+            $rule->authorize($user, $ruleDefinition->arguments);
+        });
+    }
+
+    public function hasAbility(string $ability): bool
+    {
+        return $this->abilities->contains('*') || $this->abilities->contains($ability);
     }
 }
