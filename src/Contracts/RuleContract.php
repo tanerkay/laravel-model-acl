@@ -6,5 +6,5 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 interface RuleContract
 {
-    public function authorize(?Authenticatable $user, ...$arguments): bool;
+    public function authorize(?Authenticatable $user, ...$arguments): void;
 }

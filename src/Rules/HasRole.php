@@ -3,15 +3,18 @@
 namespace Tanerkay\ModelAcl\Rules;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\Auth;
-use Tanerkay\ModelAcl\Contracts\RuleContract;
+use Tanerkay\ModelAcl\Exceptions\AuthorizationException;
 
-class HasRole implements RuleContract
+class HasRole extends Rule
 {
-    public function authorize(?Authenticatable $user, ...$arguments): bool
+    public function authorize(?Authenticatable $user, ...$arguments): void
     {
-        $user ??= Auth::user();
+        $user ??= $this->getUser();
 
-        $user->hasRole($arguments);
+        $hasRole = config('model_acl.authenticatable_methods.has_role');
+
+        if (! $user->$hasRole($arguments)) {
+            throw AuthorizationException::doesNotHaveRole($arguments);
+        }
     }
 }

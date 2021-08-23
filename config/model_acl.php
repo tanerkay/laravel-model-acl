@@ -20,8 +20,8 @@ return [
 
     /*
      * This model will be used to store access control records.
-     * It should implement the \Tanerkay\ModelAcl\Contracts\AccessControlContract interface
-     * and extend Illuminate\Database\Eloquent\Model.
+     * It should implement the `\Tanerkay\ModelAcl\Contracts\AccessControlContract` interface
+     * and extend `\Illuminate\Database\Eloquent\Model`.
      */
     'access_control_model' => \Tanerkay\ModelAcl\Models\ModelHasAccessControl::class,
 
@@ -33,8 +33,17 @@ return [
 
     /*
      * This is the database connection that will be used by the migration and
-     * the Activity model shipped with this package. In case it's not set
-     * Laravel database.default will be used instead.
+     * the `ModelHasAccessControl` model shipped with this package. In case it's not set,
+     * the config `database.default` will be used instead.
      */
     'database_connection' => env('MODEL_ACL_DB_CONNECTION'),
+
+    /*
+     * This maps methods invoked in rules to callable methods on models implementing the
+     * `Authenticatable` contract.
+     */
+    'authenticatable_methods' => [
+        'has_role' => env('MODEL_ACL_AUTHENTICATABLE_HAS_ROLE', 'hasRole'),
+        'has_permission' => env('MODEL_ACL_AUTHENTICATABLE_HAS_PERMISSION', 'hasPermission'),
+    ],
 ];
