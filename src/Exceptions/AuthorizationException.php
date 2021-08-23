@@ -17,8 +17,10 @@ class AuthorizationException extends Exception
         return new static('Invalid user returned from auth provider, user model must implement `Illuminate\Contracts\Auth\Authenticatable`.');
     }
 
-    public static function doesNotHaveRole($roles): self
+    public static function doesNotHaveRole(string|array $roles): self
     {
+        $roles = (array) $roles;
+
         return new static(sprintf(
             'The user does not have the required %s <%s> to access this model.',
             Str::plural('role', count($roles)),
@@ -26,8 +28,10 @@ class AuthorizationException extends Exception
         ));
     }
 
-    public static function doesNotHavePermission($permissions): self
+    public static function doesNotHavePermission(string|array $permissions): self
     {
+        $permissions = (array) $permissions;
+
         return new static(sprintf(
             'The user does not have the required %s <%s> to access this model.',
             Str::plural('permission', count($permissions)),

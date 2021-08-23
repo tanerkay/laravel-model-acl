@@ -16,6 +16,7 @@ use Tanerkay\ModelAcl\Contracts\RuleContract;
  * @property int $id
  * @property string $subject_type
  * @property int $subject_id
+ * @property string $description
  * @property Collection $abilities
  * @property Collection $rules
  * @property-read Model $subject
@@ -64,12 +65,12 @@ class ModelHasAccessControl extends Model implements ActivityContract
             return;
         }
 
-        $this->rules->each(function (object $ruleDefinition) use ($user) {
-            $ruleClass = $ruleDefinition->class;
+        $this->rules->each(function (object|array $ruleDefinition) use ($user) {
+            $ruleClass = data_get($ruleDefinition, 'class');
 
             /** @var RuleContract $rule */
             $rule = new $ruleClass();
-            $rule->authorize($user, $ruleDefinition->arguments);
+            $rule->authorize($user, data_get($ruleDefinition, 'arguments'));
         });
     }
 

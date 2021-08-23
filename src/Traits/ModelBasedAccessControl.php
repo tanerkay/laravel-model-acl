@@ -42,4 +42,14 @@ trait ModelBasedAccessControl
             fn (ModelHasAccessControl $accessControl) => $accessControl->authorize($ability, $user)
         );
     }
+
+    public function addAccessControl(string|array $abilities, object|array $ruleDefinitions, ?string $description = null)
+    {
+        $accessControl = new ModelHasAccessControl();
+        $accessControl->abilities = (array) $abilities;
+        $accessControl->description = $description;
+        $accessControl->rules = $ruleDefinitions;
+
+        $this->accessControl()->save($accessControl);
+    }
 }

@@ -12,6 +12,7 @@ class CreateModelHasAccessControlTable extends Migration
             $table->bigIncrements('id');
             $table->text('description');
             $table->nullableMorphs('subject', 'subject');
+            $table->json('abilities')->nullable();
             $table->json('rules')->nullable();
             $table->timestamps();
         });
