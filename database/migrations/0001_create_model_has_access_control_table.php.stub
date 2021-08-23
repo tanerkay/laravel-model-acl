@@ -1,0 +1,24 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateModelHasAccessControlTable extends Migration
+{
+    public function up()
+    {
+        Schema::connection(config('model_acl.database_connection'))->create(config('model_acl.table_name'), function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->text('description');
+            $table->nullableMorphs('subject', 'subject');
+            $table->json('rules')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::connection(config('model_acl.database_connection'))->dropIfExists(config('model_acl.table_name'));
+    }
+}

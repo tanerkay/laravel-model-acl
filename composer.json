@@ -1,0 +1,55 @@
+{
+    "name": "tanerkay/laravel-model-acl",
+    "description": "Access control based on an individual record / model",
+    "keywords": [
+        "authorization",
+        "access control",
+        "laravel"
+    ],
+    "homepage": "https://github.com/tanerkay/laravel-model-acl",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Taner",
+            "email": "hello@taner.work",
+            "homepage": "https://taner.work"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/config": "^8.0",
+        "illuminate/database": "^8.0",
+        "illuminate/support": "^8.0",
+        "spatie/laravel-package-tools": "^1.6.3"
+    },
+    "require-dev": {
+        "ext-json": "*",
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.3"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tanerkay\\ModelAcl\\ActivitylogServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Tanerkay\\ModelAcl\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tanerkay\\ModelAcl\\Test\\": "tests"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }
+}
