@@ -5,24 +5,26 @@
 Here's a demo of how you can use it:
 
 ```php
-use Tanerkay\ModelAcl\Traits\ModelBasedAccessControl
+use Illuminate\Database\Eloquent\Model;
+use Tanerkay\ModelAcl\Traits\ModelBasedAccessControl;
 
-class ReportPolicy
+class Report extends Model
 {
     use ModelBasedAccessControl;
+    
+    // ...
 }
 
-
-$user->can('view', $report);
+$report->can('view');
 ```
 
 ## Support the developer
 
-
+To be added...
 
 ## Documentation
 
-
+To be added...
 
 ## Installation
 
@@ -52,7 +54,7 @@ composer test
 
 ## Thanks
 
-- [Spatie](https://spatie.be) for making awesome packages, this package leverages `spatie/laravel-package-tools` and is itself partially derived from `spatie/laravel-activitylog`.
+- [Spatie](https://spatie.be) for making awesome packages, this package leverages `spatie/laravel-package-tools` and is itself derived from `spatie/laravel-activitylog`.
 
 ## License
 
