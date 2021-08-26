@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Collection;
-use Tanerkay\ModelAcl\Contracts\AccessControlContract as ActivityContract;
+use Tanerkay\ModelAcl\Contracts\AccessControlContract;
 use Tanerkay\ModelAcl\Contracts\RuleContract;
 
 /**
@@ -21,7 +21,7 @@ use Tanerkay\ModelAcl\Contracts\RuleContract;
  * @property Collection $rules
  * @property-read Model $subject
  */
-class ModelHasAccessControl extends Model implements ActivityContract
+class ModelHasAccessControl extends Model implements AccessControlContract
 {
     public $guarded = [];
 
