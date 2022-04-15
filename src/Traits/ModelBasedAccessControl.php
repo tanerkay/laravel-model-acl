@@ -43,8 +43,11 @@ trait ModelBasedAccessControl
         );
     }
 
-    public function addAccessControl(string|array $abilities, object|array $ruleDefinitions, ?string $description = null)
-    {
+    public function addAccessControl(
+        string|array $abilities,
+        object|array $ruleDefinitions,
+        ?string $description = null
+    ): void {
         $accessControl = new ModelHasAccessControl();
         $accessControl->abilities = (array) $abilities;
         $accessControl->description = $description;
