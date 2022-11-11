@@ -1,6 +1,8 @@
 # Model-based access control
 
-`tanerkay/laravel-model-access` allows record-level access control based on custom authorization rules.
+This package allows record-level access control based on custom authorization rules.
+
+This handles cases where you may have many records in a table, but each entity has its own rules for access control. For example, you may have a table of documents, and it's not a simple scenario where a user can edit their own documents, and view all others. Maybe the access of each document has to be set separately, e.g. document X can be edited by Bob & Jane, and viewed by the Staff group; whereas document Y can only be viewed by the Finance team.
 
 Here's a demo of how you can use it:
 
