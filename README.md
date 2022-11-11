@@ -24,6 +24,28 @@ To be added...
 
 ## Documentation
 
+### Installation
+
+Requires PHP 8.0 or higher, and Laravel 8.x or higher (currently supporting up to 9.x)
+
+``` bash
+composer require tanerkay/laravel-model-acl
+```
+
+You can publish the migration with:
+```bash
+php artisan vendor:publish --provider="Tanerkay\ModelAcl\ModelAclServiceProvider" --tag="model-acl-migrations"
+```
+
+```bash
+php artisan migrate
+```
+
+You can optionally publish the config file with:
+```bash
+php artisan vendor:publish --provider="Tanerkay\ModelAcl\ModelAclServiceProvider" --tag="model-acl-config"
+```
+
 ### Assigning access control rules to individual models
 
 The `addAccessControl()` method can be used to add rules to individual models.
@@ -91,26 +113,6 @@ $drink->addAccessControl('buy', [
 
 // throws exception if user is under 18 years of age
 $drink->can('buy');
-```
-
-## Installation
-
-``` bash
-composer require tanerkay/laravel-model-acl
-```
-
-You can publish the migration with:
-```bash
-php artisan vendor:publish --provider="Tanerkay\ModelAcl\ModelAclServiceProvider" --tag="model-acl-migrations"
-```
-
-```bash
-php artisan migrate
-```
-
-You can optionally publish the config file with:
-```bash
-php artisan vendor:publish --provider="Tanerkay\ModelAcl\ModelAclServiceProvider" --tag="model-acl-config"
 ```
 
 ## Testing
