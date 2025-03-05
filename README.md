@@ -28,8 +28,6 @@ To be added...
 
 ### Installation
 
-Requires PHP 8.0 or higher, and Laravel 8.x or higher (currently supporting up to 9.x)
-
 ``` bash
 composer require tanerkay/laravel-model-acl
 ```
